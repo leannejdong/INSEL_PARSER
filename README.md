@@ -1,6 +1,6 @@
 # Simple [insel](https://www.insel.eu/en/) Parser 
 
-Just some elementary experiments in preparing to writing a parser for Insel.
+Just some very elementary experiments in preparing to writing a parser for Insel.
 
 # Dependency
 * A modern C++ compiler on your OS
@@ -15,7 +15,7 @@ The material in this directory is only relevant to CERC developers who actively 
 
 ### Linux (CLion)
 
-* From parent directory, run `cmake-build-debug/Insel_parser >output.txt 2>&1`
+* From parent directory, run `cmake-build-debug/INSEL_PARSER >output.txt 2>&1`
 
 ### Linux (terminal)
 
