@@ -39,20 +39,19 @@ bool graph::has_vertex(int index) const
     return index >= 0 && index < (int)(*max_element(v_)+1);
 }
 
-
 void graph::compute_cycles()
 {
     auto const visited_size= *max_element(v_)+1;
     //  std::cerr << vertices_count << "\n";
     std::vector<bool> visited(visited_size, false);
-
+    int cnt = 0;
+    vector<int> cycles;
     for (size_t i = 0; i < visited_size  ; ++i)
     {
-        if (!visited[i]) dfs_compute_cycle(visited, i);
+        if (!visited[i]) dfs_compute_cycle(visited, i, cnt);
     }
 }
-
-void graph::dfs_compute_cycle(std::vector<bool>& visited, int current_vertex)
+void graph::dfs_compute_cycle(std::vector<bool>& visited, int current_vertex, int &cnt)
 {
     assert(has_vertex(current_vertex));
 
@@ -73,7 +72,7 @@ void graph::dfs_compute_cycle(std::vector<bool>& visited, int current_vertex)
             parents[v] = current_vertex;
             // set the parent of the neighbor of the current vertex to the current vertex
 
-            dfs_compute_cycle(visited, v);
+            dfs_compute_cycle(visited, v, cnt);
             // recursively compute the cycle with the neighbor of the current vertex
         }
         else
@@ -87,34 +86,49 @@ void graph::dfs_compute_cycle(std::vector<bool>& visited, int current_vertex)
                 cycle_found = true;
                 // set cycle_found to true
 
-                std::cout << "cycle found: ";
-
-                print_cycle(current_vertex, v);
+                std::cerr << "cycle found: ";
+                cnt++;
+                print_cycle(current_vertex, v, cnt);
                 // print out the cycle using the current vertex and the neighbor of the current
                 // vertex
 
-                std::cout << "\n";
+                std::cerr << "\n";
             }
         }
     }
 }
 
-void graph::print_cycle(int first_vertex, int last_vertex) const
+void graph::print_cycle(int first_vertex, int last_vertex, int&cnt) const
 {
-    assert(has_vertex(first_vertex));
-    assert(has_vertex(last_vertex));
+    vector<int> vec;
+    for (;;) {
+        assert(has_vertex(first_vertex));
+        assert(has_vertex(last_vertex));
+
 
     if (first_vertex < last_vertex)
     {
-        print_cycle(last_vertex, first_vertex);
-        return;
+        std::swap(first_vertex, last_vertex);
+    }
+    vec.push_back(first_vertex);
+        if (first_vertex == last_vertex)
+        {
+            break;
+        }
+        first_vertex = parents[first_vertex];
+    }
+    if ( cnt == 2) {
+        vec.resize(vec.size()-2);
+        for (const auto &v : vec)
+        {
+            std::cerr << v << " ";
+        }
+    } else {
+        for (const auto &v : vec)
+        {
+            std::cerr << v << " ";
+        }
     }
 
-    std::cout << first_vertex;
-    if (first_vertex != last_vertex)
-    {
-        std::cout << " -> ";
-        print_cycle(parents[first_vertex], last_vertex);
-    }
 }
 

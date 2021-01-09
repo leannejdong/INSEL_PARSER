@@ -20,11 +20,11 @@ public:
     bool has_cycle() const;
     bool has_vertex(int index) const;
     void compute_cycles();
-    void print_cycle(int first_vertex, int last_vertex) const;
+    void print_cycle(int first_vertex, int last_vertex, int &cnt) const;
 
 
 private:
-    void dfs_compute_cycle(std::vector<bool>& visited, int current_vertex);
+    void dfs_compute_cycle(std::vector<bool>& visited, int current_vertex, int &cnt);
 };
 
 #endif //INSEL_PARSER_GRAPH_H

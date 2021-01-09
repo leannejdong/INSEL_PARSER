@@ -1,13 +1,14 @@
-1 and 2
-6 and 2
+0 and 1
+5 and 1
+5 and 2
+5 and 3
 6 and 3
 6 and 4
+7 and 1
+7 and 2
 7 and 4
-7 and 5
-8 and 2
-8 and 3
-8 and 5
 End of Print 
+0
 1
 2
 3
@@ -15,7 +16,6 @@ End of Print
 5
 6
 7
-8
 End of Print 
-cycle found: 8 -> 3 -> 6 -> 2
-cycle found: 6 -> 4 -> 7 -> 5 -> 8 -> 3 -> 6 -> 2
+cycle found: 7 2 5 1 
+cycle found: 5 3 6 4 7 2 

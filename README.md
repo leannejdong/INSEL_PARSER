@@ -30,6 +30,6 @@ The material in this directory is only relevant to CERC developers who actively 
 
 * return from build to parent directory via `cd ..`
 
-* `build/Insel_parser >output.txt 2>&1`
+* `build/INSEL_PARSER >output.txt 2>&1`
 
 

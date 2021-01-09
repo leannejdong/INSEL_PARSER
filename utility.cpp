@@ -34,7 +34,7 @@ Edges parseGraph(const string &graph_string)
         vector<int> vec2 = strToVecInts(each);
 
         for (int x : vec2) {
-            V.push_back(std::make_pair(vec1[0], x));
+            V.push_back(std::make_pair(vec1[0] - 1, x - 1));
         }
     }
 
